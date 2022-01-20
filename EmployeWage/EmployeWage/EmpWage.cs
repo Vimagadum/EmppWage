@@ -10,45 +10,35 @@ namespace EmployeWage
     {
         public int empHrs;
         public int empTotalWage;
-        
-        public void IffElse()
+
+        public void Employe()
         {
-            int wagePerHrs = 20;
+            const int Full_Time = 1;
+            const int Part_Time = 2;
+            int empHrs = 0;
+            int empWagePrHr = 20;
+            int total_Wage = 0;
             Random random = new Random();
-
-            //Taking random number to check emp present or not
-            int RandomNumber = random.Next(0, 2);
-
-
-            if (RandomNumber == 0)
+            int RandomNumber = random.Next(0, 3);
+            switch (RandomNumber)
             {
-                Console.WriteLine("Emplyee is Present");
-                //Taking random number to check emp presents for full time or part time
-                int check = random.Next(0, 2);
-                if (check == 0)
-                {
-                    Console.WriteLine("Employe is present for full time");
+                case Full_Time:
                     empHrs = 8;
-                    
-                }
-                else if(check==1)
-                    
-                {
-                     Console.WriteLine("Employe is present for part time");
-                     empHrs = 4;
+                    Console.WriteLine(" Employee is worked for full time");
+                    break;
 
-                }
-                
-            }
-            else
-            {
-                Console.WriteLine("Emplyee is absent");
-            }
-            //calculating total emp wage
-            empTotalWage = wagePerHrs* empHrs;
-            //printing total emp wage
-            Console.WriteLine("EmployeWage Total Wage is = "+empTotalWage);
+                case Part_Time:
+                    empHrs = 4;
+                    Console.WriteLine("Employee is worked for part time");
+                    break;
 
+                default:
+                    Console.WriteLine("Employee is absent");
+                    break;
+            }
+
+            total_Wage = empHrs * empWagePrHr;
+            Console.WriteLine("Employee wage is" + total_Wage);
         }
     }
 }
