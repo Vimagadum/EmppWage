@@ -11,63 +11,61 @@ namespace EmployeWage
         public const int FULL_TIME = 1;
         public const int PART_TIME = 2;
         public static int empHrs = 0;
-        public static void Employee()
+
+        //method to calculate wage for multiple companies
+        public void Employee(string company, int EmpRatePerHr, int MaxWorkingDays, int MaxWorkingHrs)
         {
 
             int totalWage = 0;
-
-            int empWage;
-            const int EMP_RATE_PER_HR = 20;
-            const int MAX_WORKING_DAYS = 20;
-            const int MAX_WORKING_HRS = 100;
+            int empWage;            
             int days = 1;
             int empWorkingHrs = 0;
 
-
             //generating random number
             Random random = new Random();
-            //iterating days out of max working days and hours 
-            while (days <= MAX_WORKING_DAYS && empWorkingHrs <= MAX_WORKING_HRS)
+            //iterating emp hours out of max hours and days out of max working days 
+            while (empWorkingHrs < MaxWorkingHrs && days <= MaxWorkingDays)
             {
-
-
-                int randomInput = random.Next(0, 3);
-
-                //calling method to get working hours
+               int randomInput = random.Next(0, 3);
+                //calling method to get working hours of employee
                 GetWorkingHrs(randomInput);
-                empWage = EMP_RATE_PER_HR * empHrs;
-                Console.WriteLine("EMployee wage for DAy {0} is {1}", days, empWage);
+                empWage = EmpRatePerHr * empHrs;
+                //Console.WriteLine("EMployee wage for DAy {0} is {1}", days, empWage);
                 totalWage += empWage;
                 empWorkingHrs += empHrs;
+                
+                if (empWorkingHrs > MaxWorkingHrs)
+                {
+
+                    empWorkingHrs = MaxWorkingHrs;
+                    break;
+                }
                 days++;
 
             }
-            Console.WriteLine("total wage for {0}Days and hrs:{1} is:{2} ", MAX_WORKING_DAYS, empWorkingHrs, totalWage);
+            Console.WriteLine(" In {0} company Employee worked for {1}days out of {2}days and {3}hours out of {4}hours so Employe wage is:{5} ", company, days - 1, MaxWorkingDays, empWorkingHrs, MaxWorkingHrs, totalWage);
         }
 
-
-        //method to calculate emp hours
+        //method to get working hours of employee
         public static void GetWorkingHrs(int randomInput)
         {
-            //switc case to check emp present or not
+
             switch (randomInput)
             {
                 case FULL_TIME:
                     empHrs = 8;
-                    Console.WriteLine("Employee is present fulltime");
+                    //Console.WriteLine("Employee is present fulltime "+empHrs);
                     break;
                 case PART_TIME:
                     empHrs = 4;
-                    Console.WriteLine("Employee is present parttime");
+                    //Console.WriteLine("Employee is present parttime " +empHrs);
                     break;
                 default:
                     empHrs = 0;
-                    Console.WriteLine("Employee is absent");
+                    //Console.WriteLine("Employee is absent " +empHrs);
                     break;
             }
         }
-
-
     }
 }
 
