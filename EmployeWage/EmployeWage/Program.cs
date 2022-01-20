@@ -3,4 +3,5 @@
 using EmployeWage;
 
 Console.WriteLine("Hello, World!");
-EmpWage.IffElse();
+EmpWage ew = new EmpWage();
+ew.IffElse();
