@@ -23,14 +23,22 @@ namespace EmployeWage
             if (RandomNumber == 0)
             {
                 Console.WriteLine("Emplyee is Present");
-                //Taking random number to check full time or not
+                //Taking random number to check emp presents for full time or part time
                 int check = random.Next(0, 2);
-                if (check == 1)
+                if (check == 0)
                 {
                     Console.WriteLine("Employe is present for full time");
                     empHrs = 8;
                     
                 }
+                else if(check==1)
+                    
+                {
+                     Console.WriteLine("Employe is present for part time");
+                     empHrs = 4;
+
+                }
+                
             }
             else
             {
@@ -39,7 +47,7 @@ namespace EmployeWage
             //calculating total emp wage
             empTotalWage = wagePerHrs* empHrs;
             //printing total emp wage
-            Console.WriteLine("EmployeWage Total Wage Is = "+empTotalWage);
+            Console.WriteLine("EmployeWage Total Wage is = "+empTotalWage);
 
         }
     }
