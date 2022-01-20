@@ -20,6 +20,8 @@ namespace EmployeWage
             int total_Wage = 0;
             Random random = new Random();
             int RandomNumber = random.Next(0, 3);
+
+            //Checking Emp present or not by switch case
             switch (RandomNumber)
             {
                 case Full_Time:
@@ -36,8 +38,9 @@ namespace EmployeWage
                     Console.WriteLine("Employee is absent");
                     break;
             }
-
+            //calculating total emp wage
             total_Wage = empHrs * empWagePrHr;
+            //Displaying total emp wage
             Console.WriteLine("Employee wage is" + total_Wage);
         }
     }
