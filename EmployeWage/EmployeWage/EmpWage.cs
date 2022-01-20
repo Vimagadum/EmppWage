@@ -8,7 +8,6 @@ namespace EmployeWage
 {
     public class EmpWage
     {
-        
         public const int FULL_TIME = 1;
         public const int PART_TIME = 2;
         public static int empHrs = 0;
@@ -25,14 +24,16 @@ namespace EmployeWage
             int empWorkingHrs = 0;
 
 
-
+            //generating random number
             Random random = new Random();
+            //iterating days out of max working days and hours 
             while (days <= MAX_WORKING_DAYS && empWorkingHrs <= MAX_WORKING_HRS)
             {
 
 
                 int randomInput = random.Next(0, 3);
 
+                //calling method to get working hours
                 GetWorkingHrs(randomInput);
                 empWage = EMP_RATE_PER_HR * empHrs;
                 Console.WriteLine("EMployee wage for DAy {0} is {1}", days, empWage);
@@ -45,9 +46,10 @@ namespace EmployeWage
         }
 
 
+        //method to calculate emp hours
         public static void GetWorkingHrs(int randomInput)
         {
-
+            //switc case to check emp present or not
             switch (randomInput)
             {
                 case FULL_TIME:
@@ -64,6 +66,7 @@ namespace EmployeWage
                     break;
             }
         }
+
 
     }
 }
