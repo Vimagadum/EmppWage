@@ -15,21 +15,24 @@ namespace EmployeWage
             int empHrs = 0;
             int totalHrs = 0;
             int empWagePrHr = 20;
+            int EmpWage = 0;
             int total_Wage = 0;
+            int WorkingHrs = 0;
             int Max_Working_Days = 20;
+            int Max_Working_Hrs = 100;
             int days = 1;
             Random random = new Random();
-
-
-            //Writting for loop to repeate the loop untill its condition get false 
-            for (days = 1; days < Max_Working_Days; days++)
+            days = 1;
+            //creating while loop to max working and max hours
+            while (days <= Max_Working_Days && WorkingHrs <= Max_Working_Hrs)
             {
-                //generating random numbers to check emp present or not
+                //generating random number to check full or part time or absent 
                 int RandomNumber = random.Next(0, 3);
                 if (RandomNumber == Full_Time)
                 {
                     Console.WriteLine("Emplyee worked for full time");
                     empHrs = 8;
+
                 }
                 else if (RandomNumber == Part_Time)
                 {
@@ -39,15 +42,21 @@ namespace EmployeWage
                 else
                 {
                     Console.WriteLine("Emplyee is absent");
-                    empHrs = 0;
                 }
-                //adding emp total hours 
+                //calculating emp wage
+                EmpWage = empHrs * empWagePrHr;
+
+                //printing empwage
+                Console.WriteLine("EMployee wage for day {0} is {1}", days, EmpWage);
+                total_Wage += EmpWage;
                 totalHrs += empHrs;
-                //calculating total wage
-                total_Wage = totalHrs * empWagePrHr;
-                //printing total wage
-                Console.WriteLine("Employee wage is" + total_Wage);
+                
+                days++;
+
             }
+
+            Console.WriteLine("totalHrs wage of employee for {0} days is {1} hours is {2}", days-1, totalHrs, total_Wage);
+
 
         }
     }
