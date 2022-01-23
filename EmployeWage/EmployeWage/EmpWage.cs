@@ -68,8 +68,13 @@ namespace EmployeWage
                 days++;
 
             }
-            Console.WriteLine("\nEmployee of company : {0} , Total wage is : {1} ", emp.company, totalWage);
+            Console.WriteLine("\ncompany : {0} , Total wage is : {1} ", emp.company, totalWage);
             return totalWage;
+        }
+        //Method to get total company wage
+        public int GetTotalWage(string company)
+        {
+            return this.employees[company].totalWage;
         }
 
         //method to calculate  calculate working hours
