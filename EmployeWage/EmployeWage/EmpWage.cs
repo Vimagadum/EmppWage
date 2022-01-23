@@ -39,11 +39,9 @@ namespace EmployeWage
          int CalWage(emppp emp)
          {
             int totalWage = 0;
-
             Random random = new Random();
             while (empWorkingHrs <= emp.maxWorkingHrs && days <= emp.maxWorkingDays)
             {
-
                 int randomInput = random.Next(0, 3);
                 // calling method to fetch working hours
                 GetWorkingHrs(randomInput);
