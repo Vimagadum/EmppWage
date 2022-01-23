@@ -4,6 +4,6 @@ using EmployeWage;
 
 Console.WriteLine("Hello, World!");
 EmpWage empWage = new EmpWage();
-empWage.Employee("Parle", 20, 30, 150);
-empWage.Employee("Dell", 20, 30, 150);
-
+empWage.AddCompany("Parle", 20, 30, 50);
+empWage.AddCompany("Dell", 20, 30, 100);
+empWage.GetWage();

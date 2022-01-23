@@ -11,42 +11,60 @@ namespace EmployeWage
         public const int FULL_TIME = 1;
         public const int PART_TIME = 2;
         public static int empHrs = 0;
+        int empWage;
+        int days = 1;
+        int empWorkingHrs = 0;
+        emppp[] CompanyRecord = new emppp[5];
+        public int numOfCompany = 0;
 
-        //method to calculate wage for multiple companies
-        public void Employee(string company, int EmpRatePerHr, int MaxWorkingDays, int MaxWorkingHrs)
+        //method to add company
+        public void AddCompany(string company, int empRatePerHr, int maxWorkingDays, int maxWorkingHrs)
+        {
+            emppp emp = new emppp(company, empRatePerHr, maxWorkingDays, maxWorkingHrs);
+            this.CompanyRecord[this.numOfCompany] = emp;       //storing details in array with respecting index.
+            numOfCompany++;
+        }
+
+        //method to get wage for each company
+        public void GetWage()
         {
 
-            int totalWage = 0;
-            int empWage;            
-            int days = 1;
-            int empWorkingHrs = 0;
-
-            //generating random number
-            Random random = new Random();
-            //iterating emp hours out of max hours and days out of max working days 
-            while (empWorkingHrs < MaxWorkingHrs && days <= MaxWorkingDays)
+            for (int i = 0; i < numOfCompany; i++)
             {
-               int randomInput = random.Next(0, 3);
-                //calling method to get working hours of employee
+                int result = CalWage(this.CompanyRecord[i]);
+                this.CompanyRecord[i].SetTotalWage(result);
+            }
+        }
+        //method to calculate total wage 
+         int CalWage(emppp emp)
+         {
+            int totalWage = 0;
+
+            Random random = new Random();
+            while (empWorkingHrs <= emp.maxWorkingHrs && days <= emp.maxWorkingDays)
+            {
+
+                int randomInput = random.Next(0, 3);
+                // calling method to fetch working hours
                 GetWorkingHrs(randomInput);
-                empWage = EmpRatePerHr * empHrs;
-                //Console.WriteLine("EMployee wage for DAy {0} is {1}", days, empWage);
+                empWage = emp.empRatePerHr * empHrs;
+                //Console.WriteLine("Employee wage for DAy {0} is {1}", days, empWage);
                 totalWage += empWage;
                 empWorkingHrs += empHrs;
-                
-                if (empWorkingHrs > MaxWorkingHrs)
-                {
 
-                    empWorkingHrs = MaxWorkingHrs;
+                if (empWorkingHrs > emp.maxWorkingHrs)
+                {
+                    empWorkingHrs = emp.maxWorkingHrs;
                     break;
                 }
                 days++;
 
             }
-            Console.WriteLine(" In {0} company Employee worked for {1}days out of {2}days and {3}hours out of {4}hours so Employe wage is:{5} ", company, days - 1, MaxWorkingDays, empWorkingHrs, MaxWorkingHrs, totalWage);
+            Console.WriteLine("\nEmployee of company : {0} , Total wage is : {1} ", emp.company, totalWage);
+            return totalWage;
         }
 
-        //method to get working hours of employee
+        //method to calculate  calculate working hours
         public static void GetWorkingHrs(int randomInput)
         {
 
